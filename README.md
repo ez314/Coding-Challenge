@@ -1,5 +1,24 @@
 # ACM Research Coding Challenge (Fall 2020)
 
+## Solution by Eric Zhang
+I thought of this admittedly naive clustering algorithm while reading the problem, and a quick search showed that it was most similar in logic to DBSCAN. 
+
+The idea is that all points within a certain, user-specified range of a point should be counted in the same cluster. If a point is in two different clusters, then those clusters must be the same cluster. By this method, we can chain an entire cluster together.
+
+My algorithm is a little brute-forcey and has room for improvement, for example caching the distances between points. The steps are as follows:  
+1. Input all verticies.
+2. Assign IDs to all of the verticies.
+3. Use a union find to join points less than a certain distance apart
+4. Count the number of clusters containing over 5% of the total number of points  
+
+The only import I used was math, for square rooting.  
+
+One potential shortcoming of this method is that the distance tolerance has to be determined by the user and is not automatic. This could potentially be mitigated by taking a quartile of the set of all distances. 
+
+In the current implementation, a distance tolerance of 0.2 - 1.0 (inclusive) will give an answer of 2 clusters. A tolerance of 0.1 splits the top cluster at around the $X=4.7$ mark, giving 3 clusters.
+
+# Original Problem Readme 
+
 ## No Collaboration Policy
 
 **You may not collaborate with anyone on this challenge.** You _are_ allowed to use Internet documentation. If you _do_ use existing code (either from Github, Stack Overflow, or other sources), **please cite your sources in the README**.
